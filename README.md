@@ -1,4 +1,4 @@
-#TASK
+# TASK
 
 ## Z-Pay Backend Test Case
 
@@ -32,7 +32,7 @@ This service will have basic endpoints:
 ```
 The goal is to create a racing-condition-proof system that would prevent account being overdrafted by design.   
 
-## Solution
+# Solution
 <p>
 So main idea - event based structure. Any transaction putted into queue for workers with some quick checks. After each item in queue must be processed.
 So API is status requested. Means on first request getting results for "quick check" and ID, if success - needs to check status of ID to identify end transaction and final status (could be organized by webhooks or other ...)
