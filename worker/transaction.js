@@ -1,3 +1,7 @@
+const account = require('./account.js')
+const beginTransaction = ()=>{};
+const commitTransaction = ()=>{};
+const rollbackTransaction = ()=>{};
 class transaction{
     onTopup(item){
         const checkFraud = this.fraud(item);// second check fraud
@@ -41,8 +45,29 @@ class transaction{
         // onTopup from_account_id is correcpond account of merchant from what we get invoice
         // onWithdraw to_account_id is correcpond account of merchant what we make withdraw ...
         // onTransafer - from_account_id & to_account_id are corresponded by request
-        item.status='success';
-        item.response=item.request;
+        beginTransaction(); // snapshot of current state in storage;
+        try{
+            const acc1 = new account(item.account_id || item.from_id);
+            if( item.type == 'topup' ){
+                acc1.change( Math.abs(item.amount) );
+            }
+            else if( item.type == 'withdraw' ){
+                acc1.change( -Math.abs(item.amount) );
+            }
+            else if( item.type == 'transafer' ){
+                acc1.change( -Math.abs(item.amount) );
+                acc2 = new account(item.to_id);
+                acc2.change( Math.abs(item.amount) );
+            }
+            item.status='success';
+            item.response=item.request;
+        }
+        catch(e){
+            item.status='failed';
+            item.error=e;
+            rollbackTransaction();
+        }
+        commitTransaction();
         return item;
     }
 }
