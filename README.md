@@ -50,5 +50,5 @@ error: if no error == 0 (default is -1 - means first registrration & just reques
 </pre>
 </code>
 <p>could be extended for future</p>
-
-It doesn't mean that we should use only relation DB, it's only for transaction any account & customer data could(& in most cases - should) be in NoSQL DB, syncronized.
+<p>It doesn't mean that we should use only relation DB, it's only for transaction any account & customer data could(& in most cases - should) be in NoSQL DB, syncronized.</p>
+<p>View code comments. Entry point is <code>./index.js</code></p>
