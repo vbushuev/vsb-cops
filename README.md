@@ -40,6 +40,7 @@ So API is status requested. Means on first request getting results for "quick ch
 </p>
 For the best speed and structure control we should have Relation DB with table on transactions structure:
 <code>
+<h3>TRANSACTION table</h3>
 <pre>
 id: UUID,
 created_at: Date of creation,
