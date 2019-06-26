@@ -35,7 +35,8 @@ The goal is to create a racing-condition-proof system that would prevent account
 
 #Solution
 For the best speed and structure control we should have Relation DB with table on transactions structure:
-
+<code>
+<pre>
 id: UUID,
 created_at: Date of creation,
 updated_at: Date of submition,
@@ -44,6 +45,8 @@ to_account_id: ACCOUNT_ID,
 status: Current status,
 error: if no error == 0 (default is -1 - means first registrration & just request)
 ...
-could be extended for future
+</pre>
+</code>
+<p>could be extended for future</p>
 
 It doesn't mean that we should use only relation DB, it's only for transaction any account & customer data could(& in most cases - should) be in NoSQL DB, syncronized.
