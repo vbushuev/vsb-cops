@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <button class="ui button" id="topup">Topup</button>
+    <button class="ui button" id="withdraw">Withdraw</button>
+    <button class="ui button" id="transfer">Transfer</button>
+    <button class="ui button" id="status" style="display:none;">Status</button>
+    <br />
+    <div id="response"></div>
+</body>
+<script>
+    var lastUID = null
+    const apiCall = (type,params) => {
+        $.ajax({
+            url:`/${type}`,
+            type:'post',
+            dataType:'json',
+            data:params,
+            success:(d,x,s)=>{
+                console.debug(d,x,s);
+                $('#status').show().html(`Status of ${d.id}`).data('id',d.id);
+            },
+            complete:(x,s)=>{
+                console.debug(x,s);
+                $('#response').html(JSON.stringify(x.responseJSON));
+            }
+        });
+    };
+    $('#topup').on('click',function(e){
+        e.preventDefault();
+        apiCall('topup',{
+            account_id:123,
+            amount:123
+        })
+    })
+    $('#withdraw').on('click',function(e){
+        e.preventDefault();
+        apiCall('withdraw',{
+            account_id:123,
+            amount:123
+        })
+    })
+    $('#transafer').on('click',function(e){
+        e.preventDefault();
+        apiCall('transfer',{
+            from_id:123,
+            to_id:124,
+            amount:123
+        })
+    })
+    $('#status').on('click',function(e){
+        e.preventDefault();
+        apiCall('status',{
+            id:$(this).data('id')
+        })
+    })
+</script>
+</html>

@@ -1,0 +1,17 @@
+{
+    "name": "cops",
+    "version": "0.0.1",
+    "description": "Concept of payment system",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Sorry no tests yet :(\" && exit 1"
+    },
+    "author": "vsb",
+    "license": "none",
+    "dependencies": {
+        "dotenv": "^8.0.0",
+        "express": "^4.17.1",
+        "semantic-ui": "^2.4.2",
+        "uuid": "^3.3.2"
+    }
+}
